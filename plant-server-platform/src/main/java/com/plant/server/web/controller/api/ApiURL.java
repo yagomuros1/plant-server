@@ -40,6 +40,10 @@ public class ApiURL {
 
     public static final String DOCUMENTS = "/documents";
 
+    public static final String SITUATIONS = "/situations";
+    public static final String DIFFICULTIES = "/difficulties";
+    public static final String CATEGORIES = "/categories";
+
     public static final String FILE_PARAM = "file";
 
 
