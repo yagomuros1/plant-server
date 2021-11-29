@@ -72,6 +72,25 @@ CREATE TABLE `category` (
      PRIMARY KEY (`id`)
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
 
+DROP TABLE IF EXISTS `crop_category`;
+CREATE TABLE `crop_category` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `crop_id` BIGINT NOT NULL,
+    `category_id` BIGINT NOT NULL,
+    `version` BIGINT NOT NULL DEFAULT 0,
+     PRIMARY KEY (`id`),
+     CONSTRAINT `fk_cropCategory_crop`
+            FOREIGN KEY (`crop_id`)
+            REFERENCES `crop` (`id`)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+     CONSTRAINT `fk_cropCategory_category`
+            FOREIGN KEY (`category_id`)
+            REFERENCES `category` (`id`)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+)  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
+
 DROP TABLE IF EXISTS `cropProperty`;
 CREATE TABLE `cropProperty` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,

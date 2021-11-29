@@ -1,11 +1,11 @@
 package com.plant.server.business.entities.category;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.plant.server.business.entities.crop.Crop;
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "category")
@@ -22,6 +22,11 @@ public class Category implements Serializable {
 
     @Column(name = "name")
     private String name;
+
+    @ManyToMany(mappedBy = "categories")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private Set<Crop> crops;
 
     @Version
     @Column(name = "version")

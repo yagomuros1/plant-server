@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d83aafc6-dbef-4304-af05-2fe383be815c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/creates.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/creates.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/plant/server/business/entities/category/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plant/server/business/entities/category/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/plant/server/web/controller/api/ApiURL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/plant/server/web/controller/api/ApiURL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/plant/server/web/controller/api/ApiURL.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/plant/server/web/controller/api/ApiURL.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
