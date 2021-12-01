@@ -36,7 +36,7 @@ public class ApiPublicController {
     @GetMapping(path = ApiURL.TEST, produces = ApiUtils.TYPE_CMG_JSON_V_1_0_3)
     public static ResponseEntity<TestCO> testV103() {
         log.debug("api test 1.0.3");
-        return ResponseEntity.ok().body(new TestCO("test (CI working)"));
+        return ResponseEntity.ok().body(new TestCO("test (CI working) v1"));
     }
 
     @SuppressWarnings("static-method")
