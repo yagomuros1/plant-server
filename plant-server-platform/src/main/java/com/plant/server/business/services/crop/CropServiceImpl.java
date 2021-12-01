@@ -2,7 +2,11 @@ package com.plant.server.business.services.crop;
 
 import com.plant.server.business.entities.crop.Crop;
 import com.plant.server.business.entities.crop.CropRepository;
+import com.plant.server.business.services.category.CategoryServiceHelper;
 import com.plant.server.business.services.crop.cos.CropCO;
+import com.plant.server.business.services.difficulty.DifficultyServiceHelper;
+import com.plant.server.business.services.property.PropertyServiceHelper;
+import com.plant.server.business.services.situation.SituationServiceHelper;
 import com.plant.server.commons.properties.CommonProperties;
 import com.plant.server.util.collection.Chunk;
 import com.plant.server.util.collection.IterableUtil;
@@ -19,6 +23,18 @@ public class CropServiceImpl implements CropService {
 
     @Autowired
     private CropRepository cropRepository;
+
+    @Autowired
+    private DifficultyServiceHelper difficultyServiceHelper;
+
+    @Autowired
+    private SituationServiceHelper situationServiceHelper;
+
+    @Autowired
+    private CategoryServiceHelper categoryServiceHelper;
+
+    @Autowired
+    private PropertyServiceHelper propertyServiceHelper;
 
     @Autowired
     private CommonProperties commonProperties;
@@ -41,6 +57,13 @@ public class CropServiceImpl implements CropService {
         return IterableUtil.to(crop, a -> CropCO.builder()
                 .id(a.getId())
                 .name(a.getName())
+                .description(a.getDescription())
+                .image(a.getImage())
+                .categories(a.getCategories().stream().map(category -> this.categoryServiceHelper.toCategoryCO(category)).collect(Collectors.toList()))
+                .properties(a.getProperties().stream().map(property -> this.propertyServiceHelper.toPropertyCO(property)).collect(Collectors.toList()))
+                .conservation(a.getConservation())
+                .difficulty(difficultyServiceHelper.toDifficultyCO(a.getDifficulty()))
+                .situation(situationServiceHelper.toSituationCO(a.getSituation()))
                 .build());
     }
 

@@ -35,18 +35,12 @@ CREATE TABLE `crop` (
     `image` VARCHAR(255) NOT NULL,
     `conservation` VARCHAR(255) NOT NULL,
     `difficulty_id` BIGINT NOT NULL,
-    `category_id` BIGINT NOT NULL,
     `situation_id` BIGINT NOT NULL,
     `version` BIGINT NOT NULL DEFAULT 0,
      PRIMARY KEY (`id`),
      CONSTRAINT `fk_crop_difficulty`
             FOREIGN KEY (`difficulty_id`)
             REFERENCES `difficulty` (`id`)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE,
-     CONSTRAINT `fk_crop_category`
-            FOREIGN KEY (`category_id`)
-            REFERENCES `category` (`id`)
             ON DELETE CASCADE
             ON UPDATE CASCADE,
      CONSTRAINT `fk_crop_situation`
@@ -88,21 +82,34 @@ CREATE TABLE `crop_category` (
             FOREIGN KEY (`category_id`)
             REFERENCES `category` (`id`)
             ON DELETE CASCADE
-            ON UPDATE CASCADE,
+            ON UPDATE CASCADE
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
 
-DROP TABLE IF EXISTS `cropProperty`;
-CREATE TABLE `cropProperty` (
+DROP TABLE IF EXISTS `property`;
+CREATE TABLE `property` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `crop_id` BIGINT NOT NULL,
     `title` VARCHAR(255) NOT NULL,
     `subtitle` VARCHAR(255) NOT NULL,
     `value` VARCHAR(255) NOT NULL,
     `version` BIGINT NOT NULL DEFAULT 0,
+     PRIMARY KEY (`id`)
+)  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
+
+DROP TABLE IF EXISTS `crop_property`;
+CREATE TABLE `crop_property` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `crop_id` BIGINT NOT NULL,
+    `property_id` BIGINT NOT NULL,
+    `version` BIGINT NOT NULL DEFAULT 0,
      PRIMARY KEY (`id`),
-     CONSTRAINT `fk_cropProperty_crop`
+     CONSTRAINT `fk_crop_property_crop`
             FOREIGN KEY (`crop_id`)
             REFERENCES `crop` (`id`)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+     CONSTRAINT `fk_crop_property_property`
+            FOREIGN KEY (`property_id`)
+            REFERENCES `property` (`id`)
             ON DELETE CASCADE
             ON UPDATE CASCADE
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
@@ -115,20 +122,20 @@ CREATE TABLE `situation` (
      PRIMARY KEY (`id`)
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
 
-DROP TABLE IF EXISTS `cropCompanion`;
-CREATE TABLE `cropCompanion` (
+DROP TABLE IF EXISTS `crop_companion`;
+CREATE TABLE `crop_companion` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `crop_id` BIGINT NOT NULL,
     `crop_companion_id` BIGINT NOT NULL,
     `is_good_companion` BIT NOT NULL,
     `version` BIGINT NOT NULL DEFAULT 0,
      PRIMARY KEY (`id`),
-     CONSTRAINT `fk_crop_companion_crop_id`
+     CONSTRAINT `fk_cropCompanion_crop_id`
      	    FOREIGN KEY (`crop_id`)
      	    REFERENCES `crop` (`id`)
              ON DELETE CASCADE
              ON UPDATE CASCADE,
-     CONSTRAINT `fk_crop_companion_crop_c_id`
+     CONSTRAINT `fk_cropCompanion_crop_c_id`
             FOREIGN KEY (`crop_companion_id`)
             REFERENCES `crop` (`id`)
             ON DELETE CASCADE

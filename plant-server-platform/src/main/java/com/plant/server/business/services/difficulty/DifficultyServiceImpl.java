@@ -21,6 +21,9 @@ public class DifficultyServiceImpl implements DifficultyService {
     private DifficultyRepository difficultyRepository;
 
     @Autowired
+    private DifficultyServiceHelper difficultyServiceHelper;
+
+    @Autowired
     private CommonProperties commonProperties;
 
     @Override
@@ -32,16 +35,9 @@ public class DifficultyServiceImpl implements DifficultyService {
 
         return IterableUtil.toChunk(
                 IterableUtil.toStream(this.difficultyRepository.findAll())
-                        .map(this::toDifficultyCO)
+                        .map(difficulty ->  difficultyServiceHelper.toDifficultyCO(difficulty))
                         .collect(Collectors.toList()), this.difficultyRepository.countAll(), pageConversion, this.commonProperties.getDefaultChunkSize());
 
-    }
-
-    public DifficultyCO toDifficultyCO (Difficulty difficulty) {
-        return IterableUtil.to(difficulty, a -> DifficultyCO.builder()
-                .id(a.getId())
-                .name(a.getName())
-                .build());
     }
 
 }

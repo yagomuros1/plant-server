@@ -21,6 +21,9 @@ public class SituationServiceImpl implements SituationService {
     private SituationRepository situationRepository;
 
     @Autowired
+    private SituationServiceHelper situationServiceHelper;
+
+    @Autowired
     private CommonProperties commonProperties;
 
     @Override
@@ -32,16 +35,9 @@ public class SituationServiceImpl implements SituationService {
 
         return IterableUtil.toChunk(
                 IterableUtil.toStream(this.situationRepository.findAll())
-                        .map(this::toSituationCO)
+                        .map(situation -> situationServiceHelper.toSituationCO(situation))
                         .collect(Collectors.toList()), this.situationRepository.countAll(), pageConversion, this.commonProperties.getDefaultChunkSize());
 
-    }
-
-    public SituationCO toSituationCO (Situation situation) {
-        return IterableUtil.to(situation, a -> SituationCO.builder()
-                .id(a.getId())
-                .name(a.getName())
-                .build());
     }
 
 }

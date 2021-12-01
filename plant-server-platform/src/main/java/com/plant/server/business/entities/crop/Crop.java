@@ -2,12 +2,12 @@ package com.plant.server.business.entities.crop;
 
 import com.plant.server.business.entities.category.Category;
 import com.plant.server.business.entities.difficulty.Difficulty;
+import com.plant.server.business.entities.property.Property;
 import com.plant.server.business.entities.situation.Situation;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,6 +46,14 @@ public class Crop implements Serializable {
             inverseJoinColumns = { @JoinColumn(name = "category_id") }
     )
     private Set<Category> categories;
+
+    @ManyToMany(cascade = { CascadeType.DETACH })
+    @JoinTable(
+            name = "crop_property",
+            joinColumns = { @JoinColumn(name = "crop_id") },
+            inverseJoinColumns = { @JoinColumn(name = "property_id") }
+    )
+    private Set<Property> properties;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "situation_id")

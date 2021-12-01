@@ -20,6 +20,9 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
 
     @Autowired
+    private CategoryServiceHelper categoryServiceHelper;
+
+    @Autowired
     private CommonProperties commonProperties;
 
     @Override
@@ -31,16 +34,9 @@ public class CategoryServiceImpl implements CategoryService {
 
         return IterableUtil.toChunk(
                 IterableUtil.toStream(this.categoryRepository.findAll())
-                        .map(this::toCategoryCO)
+                        .map(category -> categoryServiceHelper.toCategoryCO(category))
                         .collect(Collectors.toList()), this.categoryRepository.countAll(), pageConversion, this.commonProperties.getDefaultChunkSize());
 
-    }
-
-    public CategoryCO toCategoryCO (Category category) {
-        return IterableUtil.to(category, a -> CategoryCO.builder()
-                .id(a.getId())
-                .name(a.getName())
-                .build());
     }
 
 }
