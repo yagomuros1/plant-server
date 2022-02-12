@@ -66,12 +66,13 @@ CREATE TABLE `category` (
      PRIMARY KEY (`id`)
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
 
-DROP TABLE IF EXISTS `companion`;
-CREATE TABLE `companion` (
+DROP TABLE IF EXISTS `single_crop`;
+CREATE TABLE `single_crop` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
     `external_id` BIGINT NOT NULL,
     `name` VARCHAR(255) NOT NULL,
     `image` VARCHAR(255) NOT NULL,
+    `top_priority` BIGINT NOT NULL DEFAULT 0,
     `version` BIGINT NOT NULL DEFAULT 0,
      PRIMARY KEY (`id`)
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
@@ -109,7 +110,7 @@ CREATE TABLE `crop_companion` (
             ON UPDATE CASCADE,
      CONSTRAINT `fk_cropCompanion_companion`
             FOREIGN KEY (`companion_id`)
-            REFERENCES `companion` (`id`)
+            REFERENCES `single_crop` (`id`)
             ON DELETE CASCADE
             ON UPDATE CASCADE
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;

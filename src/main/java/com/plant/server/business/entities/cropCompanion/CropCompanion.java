@@ -1,7 +1,6 @@
 package com.plant.server.business.entities.cropCompanion;
 
-import com.plant.server.business.entities.category.Category;
-import com.plant.server.business.entities.companion.Companion;
+import com.plant.server.business.entities.singleCrop.SingleCrop;
 import com.plant.server.business.entities.crop.Crop;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,7 +29,7 @@ public class CropCompanion implements Serializable {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "companion_id")
-    private Companion companion;
+    private SingleCrop companion;
 
     @Version
     @Column(name = "version")

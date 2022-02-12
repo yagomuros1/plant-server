@@ -1,4 +1,4 @@
-package com.plant.server.business.entities.companion;
+package com.plant.server.business.entities.singleCrop;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,12 +10,12 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "companion")
+@Table(name = "single_crop")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Companion implements Serializable {
+public class SingleCrop implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,6 +30,10 @@ public class Companion implements Serializable {
 
     @Column(name = "image")
     private String image;
+
+    // Used to prioritize in TOP crops list
+    @Column(name = "topPriority")
+    private Long topPriority;
 
     @Version
     @Column(name = "version")

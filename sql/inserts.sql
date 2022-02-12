@@ -49,12 +49,12 @@ INSERT INTO crop_property (crop_id, property_id) VALUES (3, 3);
 INSERT INTO crop_property (crop_id, property_id) VALUES (3, 5);
 INSERT INTO crop_property (crop_id, property_id) VALUES (3, 4);
 
-INSERT INTO companion (external_id, name, image) VALUES (1, 'Zanahorias', 'https://soycomocomo.es/media/2019/03/zanahorias.jpg');
-INSERT INTO companion (external_id, name, image) VALUES (2, 'Patatas', 'https://s1.eestatic.com/2020/10/09/ciencia/nutricion/patatas-adelgazar-dieta_526958892_162156492_1024x576.jpg');
-INSERT INTO companion (external_id, name, image) VALUES (3, 'Tomates', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Bright_red_tomato_and_cross_section02.jpg/251px-Bright_red_tomato_and_cross_section02.jpg');
-INSERT INTO companion (external_id, name, image) VALUES (4, 'Albahaca', 'https://agroactivocol.com/wp-content/uploads/2020/08/7e2db098-albahaca-basil-adobestock_81129315-scaled-1.jpg');
-INSERT INTO companion (external_id, name, image) VALUES (5, 'Menta', 'https://agroactivocol.com/wp-content/uploads/2020/08/HIERBABUENA.jpg');
-INSERT INTO companion (external_id, name, image) VALUES (6, 'Fresas', 'https://static.wikia.nocookie.net/esharrypotter/images/7/76/Fresa.jpg/revision/latest/top-crop/width/360/height/450?cb=20200713112301');
+INSERT INTO single_crop (external_id, name, image, top_priority) VALUES (1, 'Zanahorias', 'https://soycomocomo.es/media/2019/03/zanahorias.jpg', 43);
+INSERT INTO single_crop (external_id, name, image, top_priority) VALUES (2, 'Patatas', 'https://s1.eestatic.com/2020/10/09/ciencia/nutricion/patatas-adelgazar-dieta_526958892_162156492_1024x576.jpg', 51);
+INSERT INTO single_crop (external_id, name, image, top_priority) VALUES (3, 'Tomates', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Bright_red_tomato_and_cross_section02.jpg/251px-Bright_red_tomato_and_cross_section02.jpg', 12);
+INSERT INTO single_crop (external_id, name, image, top_priority) VALUES (4, 'Albahaca', 'https://agroactivocol.com/wp-content/uploads/2020/08/7e2db098-albahaca-basil-adobestock_81129315-scaled-1.jpg', 557);
+INSERT INTO single_crop (external_id, name, image, top_priority) VALUES (5, 'Menta', 'https://agroactivocol.com/wp-content/uploads/2020/08/HIERBABUENA.jpg', 2);
+INSERT INTO single_crop (external_id, name, image, top_priority) VALUES (6, 'Fresas', 'https://static.wikia.nocookie.net/esharrypotter/images/7/76/Fresa.jpg/revision/latest/top-crop/width/360/height/450?cb=20200713112301', 856);
 
 INSERT INTO crop_companion (crop_id, companion_id) VALUES (1, 1);
 INSERT INTO crop_companion (crop_id, companion_id) VALUES (1, 3);
