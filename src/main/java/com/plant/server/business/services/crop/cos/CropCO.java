@@ -1,7 +1,7 @@
 package com.plant.server.business.services.crop.cos;
 
 import com.plant.server.business.services.category.cos.CategoryCO;
-import com.plant.server.business.services.companion.cos.CompanionCO;
+import com.plant.server.business.services.singleCrop.cos.SingleCropCO;
 import com.plant.server.business.services.difficulty.cos.DifficultyCO;
 import com.plant.server.business.services.property.cos.PropertyCO;
 import com.plant.server.business.services.situation.cos.SituationCO;
@@ -37,6 +37,6 @@ public class CropCO implements Serializable {
 
     protected List<PropertyCO> properties;
 
-    protected List<CompanionCO> companions;
+    protected List<SingleCropCO> companions;
 
 }

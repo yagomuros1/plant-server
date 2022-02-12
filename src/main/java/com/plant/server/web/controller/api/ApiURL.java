@@ -43,7 +43,8 @@ public class ApiURL {
     public static final String SITUATIONS = "/situations";
     public static final String DIFFICULTIES = "/difficulties";
     public static final String CATEGORIES = "/categories";
-    public static final String COMPANIONS = "/companions";
+    public static final String SINGLE_CROPS = "/singleCrops";
+    public static final String TOP_CROPS = "/topCrops";
     public static final String CROPS = "/crops";
 
     public static final String FILE_PARAM = "file";

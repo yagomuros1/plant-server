@@ -1,4 +1,4 @@
-package com.plant.server.business.services.companion.cos;
+package com.plant.server.business.services.singleCrop.cos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,12 +11,14 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class CompanionCO implements Serializable {
+public class SingleCropCO implements Serializable {
 
     protected Long externalId;
 
     protected String name;
 
     protected String image;
+
+    protected Long topPriority;
 
 }

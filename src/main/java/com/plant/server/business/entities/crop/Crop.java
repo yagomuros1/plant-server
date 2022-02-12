@@ -1,7 +1,7 @@
 package com.plant.server.business.entities.crop;
 
 import com.plant.server.business.entities.category.Category;
-import com.plant.server.business.entities.companion.Companion;
+import com.plant.server.business.entities.singleCrop.SingleCrop;
 import com.plant.server.business.entities.difficulty.Difficulty;
 import com.plant.server.business.entities.property.Property;
 import com.plant.server.business.entities.situation.Situation;
@@ -62,7 +62,7 @@ public class Crop implements Serializable {
             joinColumns = {@JoinColumn(name = "crop_id")},
             inverseJoinColumns = {@JoinColumn(name = "companion_id")}
     )
-    private Set<Companion> companions;
+    private Set<SingleCrop> companions;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "situation_id")
