@@ -1,6 +1,7 @@
 package com.plant.server.business.entities.crop;
 
 import com.plant.server.business.entities.category.Category;
+import com.plant.server.business.entities.companion.Companion;
 import com.plant.server.business.entities.difficulty.Difficulty;
 import com.plant.server.business.entities.property.Property;
 import com.plant.server.business.entities.situation.Situation;
@@ -39,21 +40,29 @@ public class Crop implements Serializable {
     @JoinColumn(name = "difficulty_id")
     private Difficulty difficulty;
 
-    @ManyToMany(cascade = { CascadeType.DETACH })
+    @ManyToMany(cascade = {CascadeType.DETACH})
     @JoinTable(
             name = "crop_category",
-            joinColumns = { @JoinColumn(name = "crop_id") },
-            inverseJoinColumns = { @JoinColumn(name = "category_id") }
+            joinColumns = {@JoinColumn(name = "crop_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
     private Set<Category> categories;
 
-    @ManyToMany(cascade = { CascadeType.DETACH })
+    @ManyToMany(cascade = {CascadeType.DETACH})
     @JoinTable(
             name = "crop_property",
-            joinColumns = { @JoinColumn(name = "crop_id") },
-            inverseJoinColumns = { @JoinColumn(name = "property_id") }
+            joinColumns = {@JoinColumn(name = "crop_id")},
+            inverseJoinColumns = {@JoinColumn(name = "property_id")}
     )
     private Set<Property> properties;
+
+    @ManyToMany(cascade = {CascadeType.DETACH})
+    @JoinTable(
+            name = "crop_companion",
+            joinColumns = {@JoinColumn(name = "crop_id")},
+            inverseJoinColumns = {@JoinColumn(name = "companion_id")}
+    )
+    private Set<Companion> companions;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "situation_id")

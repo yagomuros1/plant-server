@@ -3,6 +3,7 @@ package com.plant.server.business.services.crop;
 import com.plant.server.business.entities.crop.Crop;
 import com.plant.server.business.entities.crop.CropRepository;
 import com.plant.server.business.services.category.CategoryServiceHelper;
+import com.plant.server.business.services.companion.CompanionServiceHelper;
 import com.plant.server.business.services.crop.cos.CropCO;
 import com.plant.server.business.services.difficulty.DifficultyServiceHelper;
 import com.plant.server.business.services.property.PropertyServiceHelper;
@@ -37,6 +38,9 @@ public class CropServiceImpl implements CropService {
     private PropertyServiceHelper propertyServiceHelper;
 
     @Autowired
+    private CompanionServiceHelper companionServiceHelper;
+
+    @Autowired
     private CommonProperties commonProperties;
 
     @Override
@@ -53,7 +57,7 @@ public class CropServiceImpl implements CropService {
 
     }
 
-    public CropCO toCropCO (Crop crop) {
+    public CropCO toCropCO(Crop crop) {
         return IterableUtil.to(crop, a -> CropCO.builder()
                 .id(a.getId())
                 .name(a.getName())
@@ -61,6 +65,7 @@ public class CropServiceImpl implements CropService {
                 .image(a.getImage())
                 .categories(a.getCategories().stream().map(category -> this.categoryServiceHelper.toCategoryCO(category)).collect(Collectors.toList()))
                 .properties(a.getProperties().stream().map(property -> this.propertyServiceHelper.toPropertyCO(property)).collect(Collectors.toList()))
+                .companions(a.getCompanions().stream().map(companion -> this.companionServiceHelper.toCompanionCO(companion)).collect(Collectors.toList()))
                 .conservation(a.getConservation())
                 .difficulty(difficultyServiceHelper.toDifficultyCO(a.getDifficulty()))
                 .situation(situationServiceHelper.toSituationCO(a.getSituation()))

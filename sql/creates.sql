@@ -66,6 +66,16 @@ CREATE TABLE `category` (
      PRIMARY KEY (`id`)
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
 
+DROP TABLE IF EXISTS `companion`;
+CREATE TABLE `companion` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `external_id` BIGINT NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
+    `image` VARCHAR(255) NOT NULL,
+    `version` BIGINT NOT NULL DEFAULT 0,
+     PRIMARY KEY (`id`)
+)  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
+
 DROP TABLE IF EXISTS `crop_category`;
 CREATE TABLE `crop_category` (
     `id` BIGINT NOT NULL AUTO_INCREMENT,
@@ -81,6 +91,25 @@ CREATE TABLE `crop_category` (
      CONSTRAINT `fk_cropCategory_category`
             FOREIGN KEY (`category_id`)
             REFERENCES `category` (`id`)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE
+)  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
+
+DROP TABLE IF EXISTS `crop_companion`;
+CREATE TABLE `crop_companion` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `crop_id` BIGINT NOT NULL,
+    `companion_id` BIGINT NOT NULL,
+    `version` BIGINT NOT NULL DEFAULT 0,
+     PRIMARY KEY (`id`),
+     CONSTRAINT `fk_cropCompanion_crop`
+            FOREIGN KEY (`crop_id`)
+            REFERENCES `crop` (`id`)
+            ON DELETE CASCADE
+            ON UPDATE CASCADE,
+     CONSTRAINT `fk_cropCompanion_companion`
+            FOREIGN KEY (`companion_id`)
+            REFERENCES `companion` (`id`)
             ON DELETE CASCADE
             ON UPDATE CASCADE
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
@@ -120,26 +149,6 @@ CREATE TABLE `situation` (
     `name` VARCHAR(255) NOT NULL,
     `version` BIGINT NOT NULL DEFAULT 0,
      PRIMARY KEY (`id`)
-)  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
-
-DROP TABLE IF EXISTS `crop_companion`;
-CREATE TABLE `crop_companion` (
-    `id` BIGINT NOT NULL AUTO_INCREMENT,
-    `crop_id` BIGINT NOT NULL,
-    `crop_companion_id` BIGINT NOT NULL,
-    `is_good_companion` BIT NOT NULL,
-    `version` BIGINT NOT NULL DEFAULT 0,
-     PRIMARY KEY (`id`),
-     CONSTRAINT `fk_cropCompanion_crop_id`
-     	    FOREIGN KEY (`crop_id`)
-     	    REFERENCES `crop` (`id`)
-             ON DELETE CASCADE
-             ON UPDATE CASCADE,
-     CONSTRAINT `fk_cropCompanion_crop_c_id`
-            FOREIGN KEY (`crop_companion_id`)
-            REFERENCES `crop` (`id`)
-            ON DELETE CASCADE
-            ON UPDATE CASCADE
 )  CHARACTER SET utf8 COLLATE utf8_bin engine=InnoDB;
 
 SET FOREIGN_KEY_CHECKS = 1;
